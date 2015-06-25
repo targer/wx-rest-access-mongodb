@@ -45,13 +45,11 @@ final public class PersonController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-//    List<PersonDTO> findAll() {
-    String findAll(){
+    List<PersonDTO> findAll() {
 
         List<PersonDTO> personEntries = service.findAll();
 
-//        return personEntries;
-        return "Hello World!";
+        return personEntries;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
