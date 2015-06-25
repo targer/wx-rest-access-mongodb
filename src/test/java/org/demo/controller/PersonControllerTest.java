@@ -58,11 +58,9 @@ public class PersonControllerTest {
 
 	@Test
 	public void testFindAll() throws Exception {
-//		fail("Not yet implemented");
 		mvc.perform(MockMvcRequestBuilders.get("/api/person").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
-//				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-//		.andExpect(content().string(equalTo("Hello World!")));
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE+";charset=UTF-8"));
 	}
 
 	@Test
