@@ -19,6 +19,7 @@ import java.util.List;
 final public class PersonController {
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
+    @Autowired
     private final PersonService service;
 
     @Autowired
@@ -29,54 +30,42 @@ final public class PersonController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     PersonDTO create(@RequestBody @Valid PersonDTO personDTO) {
-        logger.info("Creating a new person entry with information: {}", personDTO);
 
         PersonDTO created = service.create(personDTO);
-
-        logger.info("Created a new person entry with information: {}", created);
 
         return created;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     PersonDTO delete(@PathVariable("id") String id) {
-        logger.info("Deleting person entry with id: {}", id);
 
         PersonDTO deleted = service.delete(id);
 
-        logger.info("Deleted person entry with information: {}", deleted);
         return deleted;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    List<PersonDTO> findAll() {
-        logger.info("Finding all person entries");
+//    List<PersonDTO> findAll() {
+    String findAll(){
 
         List<PersonDTO> personEntries = service.findAll();
 
-        logger.info("Found {} person entries", personEntries);
-
-        return personEntries;
+//        return personEntries;
+        return "Hello World!";
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     PersonDTO findById(@PathVariable("id") String id) {
-        logger.info("Finding person entry with id: {}", id);
 
         PersonDTO personEntry = service.findById(id);
-
-        logger.info("Found person entry with information: {}", personEntry);
 
         return personEntry;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     PersonDTO update(@RequestBody @Valid PersonDTO personDTO) {
-        logger.info("Updating person entry with information: {}", personDTO);
 
         PersonDTO updated = service.update(personDTO);
-
-        logger.info("Updated person entry with infomation: {}", updated);
 
         return updated;
     }
